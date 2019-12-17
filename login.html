@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>996mail</title>
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="/layui/css/layui.css">
+        <script src="/layui/layui.all.js"></script>
+    </head>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            display: flex;
+            display: -webkit-flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        #login_frame {
+            width: 450px;
+            height: 500px;
+            border-radius: 2%;
+            border: 1px solid rgba(170, 170, 170, 0.623);
+            /* box-shadow: 5px 5px 5px #888888; */
+            top: 30%;
+            /* left: 30%; */
+            position: absolute;
+        }
+        #logo {
+            margin-left: 165px;
+            width: 120px;
+            height: 120px;
+        }
+        h1 {
+            margin-top: -25px;
+            text-align: center;
+        }
+        h3 {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .layui-form {
+            margin-top: 40px;
+            width: 400px;
+        }
+        #submit_frame {
+            margin-top: 40px;
+            margin-left: 40px;
+        }
+    </style>
+
+    <body>
+        <div id="login_frame">
+            <img id='logo' src="\img\logo.png" alt="">
+            <h1>登录</h1>
+            <h3>继续使用996mail</h3>
+            <form action="" class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                        <input
+                            id="username"
+                            type="text"
+                            name="username"
+                            required="required"
+                            lay-verify="required"
+                            placeholder="请输入用户名"
+                            autocomplete="off"
+                            class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-block">
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            required="required"
+                            lay-verify="required"
+                            placeholder="请输入密码"
+                            autocomplete="off"
+                            class="layui-input">
+                    </div>
+
+                    <div class="layui-form-item" id="submit_frame">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" onclick="login();">登录</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- <form method="POST"> <input type="text" name="username" placeholder="用户名"
+            id="username"> <input type="password" name="password" placeholder="密码"
+            id="password"> <input type="button" value="登录" onclick="login();"> </form> -->
+
+            <script>
+                function login() {
+
+                    var username = $('#username').val();
+                    var password = $('#password').val();
+                    var data = {
+                        "username": username,
+                        "password": password
+                    };
+
+                    $.ajax({
+                        url: '/login',
+                        type: 'POST',
+                        data: data,
+                        success: function (data, status) {
+                            if (status == 'success') {
+                                location.href = 'index';
+                            }
+                        },
+                        error: function (data, status, e) {
+                            if (status == 'error') {
+                                alert("用户名或密码错误");
+                                location.href = '/';
+                            }
+                        }
+                    });
+
+                }
+            </script>
+
+        </body>
+    </html>
