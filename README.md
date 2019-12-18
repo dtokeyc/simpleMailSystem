@@ -25,7 +25,7 @@ node server.js
 
 之后浏览器打开本地 1234 端口进入登录页面，登录账户为 admin ，密码 123
 
-![login_demo](\public\img\login_demo.png)
+![login_demo.png](https://i.loli.net/2019/12/18/FxWCZgMSBGKnvb3.png)
 
 
 
